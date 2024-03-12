@@ -1,5 +1,6 @@
+
+# Load Package ------------------------------------------------------------
 library(gapminder)
-library(ggplot2)
 library(tidyverse)
 library(ggrepel)
 library(ggpubr)
@@ -8,12 +9,18 @@ library(RColorBrewer)
 # library(firatheme)
 
 
-# Load the data
-gdp_pcap <- read_csv("gdp_pcap.csv")
-roads_paved <- read_csv("roads_paved_percent_of_total_roads.csv")
-Geographies <- read_csv("Data Geographies - v2 - by Gapminder - list-of-countries-etc.csv")
+# Set up the working Directory --------------------------------------------
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
-# Merge the data
+
+
+# Load the data -----------------------------------------------------------
+gdp_pcap <- read_csv("../Data/gdp_pcap.csv")
+roads_paved <- read_csv("../Data/roads_paved_percent_of_total_roads.csv")
+Geographies <- read_csv("../Data/Data Geographies - v2 - by Gapminder - list-of-countries-etc.csv")
+
+
+# Merge the data ----------------------------------------------------------
 # change the country name to match the name in Geographies
 gdp_pcap <- gdp_pcap %>% mutate(
   country = case_when(
@@ -25,7 +32,7 @@ gdp_pcap <- gdp_pcap %>% mutate(
   )
 )
 
-
+# change the country name to match the name in Geographies
 roads_paved <- roads_paved %>% mutate(
   country = case_when(
     country == "UK" ~ "United Kingdom",
@@ -35,7 +42,6 @@ roads_paved <- roads_paved %>% mutate(
     TRUE ~ country
   )
 )
-
 
 # mutate the columns to numeric
 gdp_pcap <- gdp_pcap %>%

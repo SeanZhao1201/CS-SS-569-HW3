@@ -9,15 +9,11 @@ library(RColorBrewer)
 # library(firatheme)
 
 
-# Set up the working Directory --------------------------------------------
-setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-
-
 
 # Load the data -----------------------------------------------------------
-gdp_pcap <- read_csv("../Data/gdp_pcap.csv")
-roads_paved <- read_csv("../Data/roads_paved_percent_of_total_roads.csv")
-Geographies <- read_csv("../Data/Data Geographies - v2 - by Gapminder - list-of-countries-etc.csv")
+gdp_pcap <- read_csv("gdp_pcap.csv")
+roads_paved <- read_csv("roads_paved_percent_of_total_roads.csv")
+Geographies <- read_csv("Data Geographies - v2 - by Gapminder - list-of-countries-etc.csv")
 
 
 # Merge the data ----------------------------------------------------------

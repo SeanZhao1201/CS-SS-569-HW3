@@ -18,8 +18,7 @@ function(input, output) {
       filter(four_regions %in% input$region_group) %>%
       filter(Year == input$year)
   })
-  
-  # Create the plot
+    # Create the plot
   output$distPlot <- renderPlot({
     p <- ggplot(
       subset_data(),

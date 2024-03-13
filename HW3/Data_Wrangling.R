@@ -62,6 +62,7 @@ final_data <- tidy_road %>%
 ff_data <- final_data %>%
   left_join(tidy_gdp, by = c("country", "Year") ) %>% 
   # make the column Paved Roads aubtracted by 100
-  mutate(`Paved Roads` = `Paved Roads` / 100) 
+  mutate(`Paved Roads` = `Paved Roads` / 100) %>% 
+  drop_na()
 
 

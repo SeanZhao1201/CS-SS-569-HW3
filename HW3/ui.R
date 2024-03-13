@@ -14,18 +14,33 @@ library(shiny)
 
 
 # Define the UI -----------------------------------------------------------
-ui <- fluidPage(
+ui <- fluidPage(# App title
   titlePanel("Gapminder Data"),
+  # Sidebar layout with input and output definitions
+  # Sidebar with a slider and select input for number of bins
   sidebarLayout(
     sidebarPanel(
-      selectInput("x", "X-axis:", choices = c("GDP per cap", "Paved Roads")),
-      selectInput("y", "Y-axis:", choices = c("GDP per cap", "Paved Roads")),
-      selectInput("color", "Color:", choices = c("GDP per cap", "Paved Roads")),
-      selectInput("size", "Size:", choices = c("GDP per cap", "Paved Roads"))
+      # choosing the years for the analysis
+      sliderInput(
+        "year",
+        label = h3("Choose a year:"),
+        min = 1990,
+        max = 2009,
+        value = 1996
+      ),
+      # Select a group of region for display
+      checkboxGroupInput(
+        "region_group",
+        label = h3("Filter by region group:"),
+        choices = unique(ff_data$four_regions),
+        selected = "asia"
+      ),
+      hr(),
+      # Add a horizontal rule
+      checkboxInput("smooth", "Add smoother"),
+      checkboxInput("facet", "Small multiples")
     ),
-    mainPanel(
-      plotOutput("scatterplot")
-    )
-  )
-)
-
+    
+    # Show a plot of the generated distribution
+    mainPanel(plotOutput("distPlot"))
+  ))
